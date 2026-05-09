@@ -1,0 +1,43 @@
+cabal-version:   3.0
+name:            theorem-prover
+version:         0.1.0.0
+license:         NONE
+author:          Azad
+maintainer:      azad.r.ellafi@gmail.com
+build-type:      Simple
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import:           warnings
+    exposed-modules:  PropLanguage, PropParser, PrettyPrinter, CNF
+    build-depends:
+                      base,
+                      megaparsec         >= 9.0,
+                      parser-combinators >= 1.3,
+                      mtl                >= 2.3.1
+    hs-source-dirs:   src
+    default-language: Haskell2010
+
+executable theorem-prover
+    import:           warnings
+    main-is:          Main.hs
+    build-depends:
+                      base,
+                      theorem-prover,
+                      megaparsec       >= 9.0
+    hs-source-dirs:   app
+    default-language: Haskell2010
+
+test-suite prop-parser-test
+    type:             exitcode-stdio-1.0
+    main-is:          Spec.hs
+    other-modules:    PropSpec, CNFSpec
+    hs-source-dirs:   test
+    build-depends:
+                      base,
+                      hspec,
+                      megaparsec,
+                      theorem-prover
+    default-language: Haskell2010

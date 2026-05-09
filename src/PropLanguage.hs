@@ -1,6 +1,10 @@
+module PropLanguage where
 
+import Data.Void
+import Text.Megaparsec
 
--- Data Types representing Propositions
+type Parser = Parsec Void String
+
 data Prop = Var String 
           | Con Bool 
           | Not Prop 
@@ -13,11 +17,6 @@ data Prop = Var String
           | Pred String [Term]
           deriving (Show, Eq)
 
--- Data Type representing Terms (Variables or Functions)
 data Term = TVar String | TFunc String [Term] deriving (Show, Eq)
 
-x :: Prop
-x = Iff (Var "a") (Var "b")
 
-main :: IO ()
-main = print x 
